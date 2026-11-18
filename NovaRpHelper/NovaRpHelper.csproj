@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+		<RootNamespace>NovaRpHelper</RootNamespace>
+		<AssemblyName>NovaRpHelper</AssemblyName>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<!-- Процесс всегда 64-bit (критично для SendInput/INPUT struct), независимо от платформы solution -->
+		<PlatformTarget>x64</PlatformTarget>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<Company>NovaRpHelper</Company>
+		<Product>Nova Rp Helper</Product>
+		<Description>External RP Helper for NOVA RP with overlay and OCR</Description>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+		<Platforms>AnyCPU;x64</Platforms>
+	</PropertyGroup>
+
+	<!-- Убираем глобальные WinForms/Drawing usings, чтобы не было CS0104 с WPF -->
+	<ItemGroup>
+		<Using Remove="System.Windows.Forms" />
+		<Using Remove="System.Drawing" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="8.0.5" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+
+</Project>

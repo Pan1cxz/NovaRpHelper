@@ -1,0 +1,86 @@
+﻿<Window x:Class="NovaRpHelper.UI.OnboardingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Nova RP Helper — Регистрация"
+        Width="400"
+        Height="560"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+    <Border Background="#E61E1E1E"
+            BorderBrush="#3F3F46"
+            BorderThickness="1"
+            CornerRadius="8"
+            Padding="16">
+        <StackPanel>
+            <TextBlock Text="⚡ Регистрация на NOVA RP"
+                       FontSize="16" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,4"/>
+            <TextBlock Text="Профиль хранится локально, влияет на бейдж в шапке, режим наказаний по умолчанию и будущие ролевые функции."
+                       FontSize="11" Foreground="#B0B0B0" TextWrapping="Wrap" Margin="0,0,0,12"/>
+
+            <TextBlock Text="Игровой ник (Name_Surname):" Foreground="#B0B0B0" FontSize="11" Margin="0,0,0,4"/>
+            <TextBox x:Name="NickBox" Style="{StaticResource ModernTextBox}" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Кем ты являешься на сервере?" Foreground="#B0B0B0" FontSize="11" Margin="0,0,0,4"/>
+            <StackPanel Margin="0,0,0,10">
+                <RadioButton x:Name="RoleCivil" Content="Гражданский / член семьи" GroupName="Role" Margin="0,2" Checked="Role_Changed"/>
+                <RadioButton x:Name="RoleAdmin" Content="Администрация проекта" GroupName="Role" Margin="0,2" Checked="Role_Changed"/>
+                <RadioButton x:Name="RoleGov" Content="Государственная структура" GroupName="Role" Margin="0,2" Checked="Role_Changed"/>
+                <RadioButton x:Name="RoleCrime" Content="Нелегальная организация" GroupName="Role" Margin="0,2" Checked="Role_Changed"/>
+            </StackPanel>
+
+            <!-- Гос: фракция + звание/должность -->
+            <StackPanel x:Name="GovPanel" Visibility="Collapsed" Margin="0,0,0,10">
+                <TextBlock Text="Фракция:" Foreground="#B0B0B0" FontSize="11" Margin="0,0,0,4"/>
+                <ComboBox x:Name="FactionBox" Background="#2D2D30" Foreground="White" Padding="6,4"
+                          SelectionChanged="Faction_Changed">
+                    <ComboBoxItem>Правительство</ComboBoxItem>
+                    <ComboBoxItem>Судебная власть</ComboBoxItem>
+                    <ComboBoxItem>Центральная полиция</ComboBoxItem>
+                    <ComboBoxItem>Дорожная полиция</ComboBoxItem>
+                    <ComboBoxItem>Национальная гвардия</ComboBoxItem>
+                    <ComboBoxItem>EMS</ComboBoxItem>
+                    <ComboBoxItem>Федеральное Расследовательское Бюро</ComboBoxItem>
+                </ComboBox>
+
+                <StackPanel x:Name="GovRankComboPanel" Visibility="Collapsed">
+                    <TextBlock x:Name="GovRankComboLabel" Text="Звание / должность:" Foreground="#B0B0B0" FontSize="11" Margin="0,6,0,4"/>
+                    <ComboBox x:Name="GovRankCombo" Background="#2D2D30" Foreground="White" Padding="6,4"/>
+                </StackPanel>
+
+                <StackPanel x:Name="GovRankTextPanel" Visibility="Collapsed">
+                    <TextBlock Text="Должность / ранг:" Foreground="#B0B0B0" FontSize="11" Margin="0,6,0,4"/>
+                    <TextBox x:Name="GovRankText" Style="{StaticResource ModernTextBox}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Криминал: организация + ранг -->
+            <StackPanel x:Name="CrimePanel" Visibility="Collapsed" Margin="0,0,0,10">
+                <TextBlock Text="Организация:" Foreground="#B0B0B0" FontSize="11" Margin="0,0,0,4"/>
+                <ComboBox x:Name="CrimeOrgBox" Background="#2D2D30" Foreground="White" Padding="6,4">
+                    <ComboBoxItem>The Ballas Gang</ComboBoxItem>
+                    <ComboBoxItem>The Families</ComboBoxItem>
+                    <ComboBoxItem>Los Santos Vagos</ComboBoxItem>
+                    <ComboBoxItem>Marabunta Grande</ComboBoxItem>
+                    <ComboBoxItem>Bloods Street Gang</ComboBoxItem>
+                </ComboBox>
+                <TextBlock Text="Ранг в организации:" Foreground="#B0B0B0" FontSize="11" Margin="0,6,0,4"/>
+                <TextBox x:Name="CrimeRankBox" Style="{StaticResource ModernTextBox}"/>
+            </StackPanel>
+
+            <TextBlock x:Name="ErrorText" Foreground="#F44336" FontSize="11"
+                       TextWrapping="Wrap" Margin="0,0,0,8"/>
+
+            <Button Content="Сохранить и продолжить"
+                    Style="{StaticResource ModernButton}"
+                    HorizontalAlignment="Right"
+                    Width="180"
+                    Click="Save_Click"/>
+        </StackPanel>
+    </Border>
+</Window>
